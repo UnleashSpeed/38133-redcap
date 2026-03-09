@@ -180,7 +180,7 @@ export const AccuracyHeatmap: React.FC<AccuracyHeatmapProps> = ({
           <Info className="w-4 h-4 mt-0.5 flex-shrink-0" />
           <span>
             <strong>Fun Fact:</strong> 2Rx (two antennas) is like having two ears - you can 
-            "hear" the signal much more accurately! The improvement is shown in green.
+            "hear\" the signal much more accurately! The improvement is shown in green.
           </span>
         </div>
       )}
