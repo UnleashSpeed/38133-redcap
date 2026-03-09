@@ -2,9 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Import KaTeX styles */
-@import 'katex/dist/katex.min.css';
-
 /* Custom CSS Variables */
 :root {
   /* Nokia Blue Palette */

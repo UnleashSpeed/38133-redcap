@@ -2,8 +2,7 @@
 
 import React, { useState, useMemo, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { InlineMath, BlockMath } from "react-katex";
-import "katex/dist/katex.min.css";
+import { MathJax, MathJaxContext } from "better-react-mathjax";
 import {
   Settings,
   Activity,
@@ -476,7 +475,7 @@ const GapSharingSimulator: React.FC<{ mode: ModeType }> = ({ mode }) => {
             {kIntra.toFixed(2)}
           </div>
           <div className="text-xs text-slate-500 mt-1">
-            <InlineMath math={`K_{intra} = \\frac{1}{${xValue}} \\times 100`} />
+            <MathJax>{`\\(K_{intra} = \\frac{1}{${xValue}} \\times 100\\)`}</MathJax>
           </div>
         </div>
         <div className="bg-orange-50 dark:bg-orange-900/30 p-4 rounded-lg">
@@ -485,7 +484,7 @@ const GapSharingSimulator: React.FC<{ mode: ModeType }> = ({ mode }) => {
             {kInter.toFixed(2)}
           </div>
           <div className="text-xs text-slate-500 mt-1">
-            <InlineMath math={`K_{inter} = \\frac{1}{${100 - xValue}} \\times 100`} />
+            <MathJax>{`\\(K_{inter} = \\frac{1}{${100 - xValue}} \\times 100\\)`}</MathJax>
           </div>
         </div>
       </div>
@@ -495,7 +494,7 @@ const GapSharingSimulator: React.FC<{ mode: ModeType }> = ({ mode }) => {
           <p className="text-sm font-mono text-slate-600 dark:text-slate-300">
             3GPP TS 38.133 clause 9.1A.2.1
           </p>
-          <BlockMath math="K_{intra} = \\frac{1}{X} \\times 100, \\quad K_{inter} = \\frac{1}{100-X} \\times 100" />
+          <MathJax>{`\\[K_{intra} = \\frac{1}{X} \\times 100, \\quad K_{inter} = \\frac{1}{100-X} \\times 100\\]`}</MathJax>
         </div>
       )}
 
@@ -607,7 +606,7 @@ const CSSFCalculator: React.FC<{ mode: ModeType }> = ({ mode }) => {
       {/* Formula */}
       {mode === "spec" && (
         <div className="p-4 bg-slate-50 dark:bg-slate-700/50 rounded-lg">
-          <BlockMath math="CSSF_{within\\_gap\\_RedCap,i} = \\max(1, \\lceil (M_{intra} + M_{inter}) \\times R_i \\rceil)" />
+          <MathJax>{`\\[CSSF_{within\\_gap\\_RedCap,i} = \\max(1, \\lceil (M_{intra} + M_{inter}) \\times R_i \\rceil)\\]`}</MathJax>
         </div>
       )}
 
@@ -994,11 +993,11 @@ const IntraInterComparison: React.FC<{ mode: ModeType }> = ({ mode }) => {
         <div className="mt-6 p-4 bg-slate-50 dark:bg-slate-700/50 rounded-lg space-y-4">
           <div>
             <p className="text-sm font-medium text-slate-600 dark:text-slate-300 mb-2">Intra-Frequency (Clause 9.2B):</p>
-            <BlockMath math={`T_{PSS/SSS\\_sync}^{intra} = \\max(600, \\lceil ${rxConfig === "1rx" ? 7 : 5} \\times K_p \\rceil \\times SMTC) \\times CSSF`} />
+            <MathJax>{`\\[T_{PSS/SSS\\_sync}^{intra} = \\max(600, \\lceil ${rxConfig === "1rx" ? 7 : 5} \\times K_p \\rceil \\times SMTC) \\times CSSF\\]`}</MathJax>
           </div>
           <div>
             <p className="text-sm font-medium text-slate-600 dark:text-slate-300 mb-2">Inter-Frequency (Clause 9.3B):</p>
-            <BlockMath math={`T_{PSS/SSS\\_sync}^{inter} = \\max(600, ${rxConfig === "1rx" ? 10 : 8} \\times \\max(MGRP, SMTC)) \\times CSSF`} />
+            <MathJax>{`\\[T_{PSS/SSS\\_sync}^{inter} = \\max(600, ${rxConfig === "1rx" ? 10 : 8} \\times \\max(MGRP, SMTC)) \\times CSSF\\]`}</MathJax>
           </div>
         </div>
       )}
@@ -1336,7 +1335,8 @@ const MeasurementSection: React.FC<MeasurementSectionProps> = ({ mode = "researc
   ];
 
   return (
-    <section className="py-8 px-4 max-w-7xl mx-auto">
+    <MathJaxContext>
+      <section className="py-8 px-4 max-w-7xl mx-auto">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
@@ -1451,6 +1451,7 @@ const MeasurementSection: React.FC<MeasurementSectionProps> = ({ mode = "researc
         </div>
       </motion.div>
     </section>
+    </MathJaxContext>
   );
 };
 

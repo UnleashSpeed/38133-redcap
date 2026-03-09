@@ -11,15 +11,15 @@ import { Sidebar } from './components/navigation/Sidebar';
 // Section Components
 import { HeroSection } from './sections/HeroSection';
 import { RLMSection } from './sections/RLMSection';
-import { MeasurementSection } from './sections/MeasurementSection';
-import { IdleMobilitySection } from './sections/IdleMobilitySection';
-import { PerformanceSection } from './sections/PerformanceSection';
-import { InteractiveToolsSection } from './sections/InteractiveToolsSection';
-import { GamificationSection } from './sections/GamificationSection';
+import MeasurementSection from './sections/MeasurementSection';
+import IdleMobilitySection from './sections/IdleMobilitySection';
+import PerformanceSection from './sections/PerformanceSection';
+import InteractiveToolsSection from './sections/InteractiveToolsSection';
+import GamificationSection from './sections/GamificationSection';
 import { BeautyOfRedCapSection } from './sections/BeautyOfRedCapSection';
 
 // Chatbot Component
-import { Chatbot } from './components/chatbot/Chatbot';
+import Chatbot from './components/chatbot/Chatbot';
 
 // Nokia Blue color
 const NOKIA_BLUE = '#005AFF';
@@ -164,6 +164,12 @@ const ScrollToTop: React.FC = () => {
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  // Ensure client-side rendering
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Simulate loading
   useEffect(() => {
@@ -173,6 +179,10 @@ export default function Home() {
 
     return () => clearTimeout(timer);
   }, []);
+
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <>

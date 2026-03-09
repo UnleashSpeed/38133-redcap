@@ -56,13 +56,18 @@ interface IoRangeAccuracy {
   '2Rx': AccuracyValue;
 }
 
+interface RxAccuracyValue {
+  '1Rx': AccuracyValue;
+  '2Rx': AccuracyValue;
+}
+
 interface MetricAccuracyData {
   FR1: {
-    absolute: IoRangeAccuracy[] | AccuracyValue;
+    absolute: IoRangeAccuracy[] | RxAccuracyValue;
     relative?: AccuracyValue;
   };
   FR2: {
-    absolute: IoRangeAccuracy[] | AccuracyValue;
+    absolute: IoRangeAccuracy[] | RxAccuracyValue;
     relative?: AccuracyValue;
   };
 }
@@ -219,7 +224,7 @@ const AccuracyHeatmap: React.FC<AccuracyHeatmapProps> = ({ data, condition, mode
         </div>
         <div className="flex items-center gap-2">
           <div className="w-4 h-4 rounded bg-red-500"></div>
-          <span className="text-sm text-slate-600">Fair (>8 dB)</span>
+          <span className="text-sm text-slate-600">Fair ({'>'}8 dB)</span>
         </div>
       </div>
 
@@ -313,7 +318,7 @@ const RxComparisonChart: React.FC<RxComparisonChartProps> = ({ data, condition }
 
 // --- Simple Accuracy Display (for RSRQ/SINR) ---
 interface SimpleAccuracyDisplayProps {
-  data: AccuracyValue;
+  data: RxAccuracyValue;
   metric: string;
   condition: Condition;
   mode: DisplayMode;
@@ -458,7 +463,7 @@ const AccuracyTable: React.FC<AccuracyTableProps> = ({ metric, fr, mode }) => {
         return RSRP_ACCURACY[fr].absolute as IoRangeAccuracy[];
       case 'RSRQ':
       case 'SINR':
-        const simpleData = (metric === 'RSRQ' ? RSRQ_ACCURACY : SINR_ACCURACY)[fr].absolute as AccuracyValue;
+        const simpleData = (metric === 'RSRQ' ? RSRQ_ACCURACY : SINR_ACCURACY)[fr].absolute as RxAccuracyValue;
         return [
           { range: 'All Io ranges', minIo: -100, maxIo: -50, '1Rx': simpleData['1Rx'], '2Rx': simpleData['2Rx'] }
         ];
@@ -772,22 +777,22 @@ const PerformanceSection: React.FC<PerformanceSectionProps> = ({ mode = 'researc
         );
       
       case 'RSRQ':
-        const rsrqData = RSRQ_ACCURACY[fr].absolute as AccuracyValue;
+        const rsrqData = RSRQ_ACCURACY[fr].absolute as RxAccuracyValue;
         return (
           <div className="space-y-6">
             <ModeContent mode={mode} metric="RSRQ" />
-            <SimpleAccuracyDisplay 
-              data={rsrqData} 
-              metric="RSRQ" 
-              condition={condition} 
-              mode={mode} 
+            <SimpleAccuracyDisplay
+              data={rsrqData}
+              metric="RSRQ"
+              condition={condition}
+              mode={mode}
             />
             <AccuracyTable metric="RSRQ" fr={fr} mode={mode} />
           </div>
         );
-      
+
       case 'SINR':
-        const sinrData = SINR_ACCURACY[fr].absolute as AccuracyValue;
+        const sinrData = SINR_ACCURACY[fr].absolute as RxAccuracyValue;
         return (
           <div className="space-y-6">
             <ModeContent mode={mode} metric="SINR" />
