@@ -56,10 +56,6 @@ export function ModeProvider({ children }: { children: React.ReactNode }) {
     isSpec: mode === 'spec',
   };
 
-  if (!mounted) {
-    return <div style={{ visibility: 'hidden' }}>{children}</div>;
-  }
-
   return (
     <ModeContext.Provider value={value}>
       {children}

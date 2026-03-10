@@ -58,10 +58,6 @@ export function RxProvider({ children }: { children: React.ReactNode }) {
     is2Rx: rxMode === '2rx',
   };
 
-  if (!mounted) {
-    return <div style={{ visibility: 'hidden' }}>{children}</div>;
-  }
-
   return (
     <RxContext.Provider value={value}>
       {children}

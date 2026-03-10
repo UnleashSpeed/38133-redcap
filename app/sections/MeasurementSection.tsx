@@ -1322,7 +1322,7 @@ interface MeasurementSectionProps {
   mode?: ModeType;
 }
 
-const MeasurementSection: React.FC<MeasurementSectionProps> = ({ mode = "researcher" }) => {
+export const MeasurementSection: React.FC<MeasurementSectionProps> = ({ mode = "researcher" }) => {
   const [activeTab, setActiveTab] = useState<string>("gap-patterns");
 
   const tabs = [

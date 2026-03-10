@@ -17,6 +17,7 @@ import { PerformanceSection } from './sections/PerformanceSection';
 import { InteractiveToolsSection } from './sections/InteractiveToolsSection';
 import { GamificationSection } from './sections/GamificationSection';
 import { BeautyOfRedCapSection } from './sections/BeautyOfRedCapSection';
+import { SidelinkSection } from './sections/SidelinkSection';
 
 // Chatbot Component
 import { Chatbot } from './components/chatbot/Chatbot';
@@ -207,6 +208,11 @@ export default function Home() {
           {/* Measurement Section (9.1A) */}
           <section id="measurement" className="scroll-mt-16">
             <MeasurementSection />
+          </section>
+
+          {/* Sidelink Section (10.1A) */}
+          <section id="sidelink" className="scroll-mt-16">
+            <SidelinkSection defaultMode="researcher" />
           </section>
 
           {/* Idle Mobility Section (4.2B) */}

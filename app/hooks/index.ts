@@ -16,3 +16,7 @@ export {
 export {
   useTEvaluateCalculator,
 } from './useTEvaluateCalculator';
+
+export {
+  useSidelinkSimulator,
+} from './useSidelinkSimulator';

@@ -53,7 +53,7 @@ const defaultProgress: UserProgress = {
 
 type GamificationTab = "overview" | "badges" | "progress" | "quiz";
 
-export default function GamificationSection() {
+export function GamificationSection() {
   const [activeTab, setActiveTab] = useState<GamificationTab>("overview");
   const [progress, setProgress] = useState<UserProgress>(defaultProgress);
   const [showQuiz, setShowQuiz] = useState(false);
@@ -474,3 +474,5 @@ export default function GamificationSection() {
     </section>
   );
 }
+
+export default GamificationSection;

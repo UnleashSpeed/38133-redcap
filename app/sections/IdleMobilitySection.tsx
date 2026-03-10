@@ -1417,7 +1417,7 @@ const ScenarioToggles: React.FC<{ mode: ContentMode }> = ({ mode }) => {
 // MAIN SECTION COMPONENT
 // ============================================================================
 
-const IdleMobilitySection: React.FC = () => {
+export const IdleMobilitySection: React.FC = () => {
   const [mode, setMode] = useState<ContentMode>('researcher');
   const [activeTab, setActiveTab] = useState<'overview' | 'calculator' | 'timeline' | 'comparison' | 'tables'>('overview');
 

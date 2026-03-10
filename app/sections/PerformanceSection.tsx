@@ -742,7 +742,7 @@ interface PerformanceSectionProps {
   mode?: DisplayMode;
 }
 
-const PerformanceSection: React.FC<PerformanceSectionProps> = ({ mode = 'researcher' }) => {
+export const PerformanceSection: React.FC<PerformanceSectionProps> = ({ mode = 'researcher' }) => {
   const [activeMetric, setActiveMetric] = useState<MetricType>('RSRP');
   const [fr, setFr] = useState<FrequencyRange>('FR1');
   const [condition, setCondition] = useState<Condition>('normal');

@@ -70,7 +70,7 @@ const tools: ToolInfo[] = [
   },
 ];
 
-export default function InteractiveToolsSection() {
+export function InteractiveToolsSection() {
   const [activeTab, setActiveTab] = useState<ToolTab>("calculator");
   const [showTips, setShowTips] = useState(true);
 
@@ -306,3 +306,5 @@ export default function InteractiveToolsSection() {
     </section>
   );
 }
+
+export default InteractiveToolsSection;

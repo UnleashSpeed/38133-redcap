@@ -8,6 +8,4 @@ export { PerformanceSection } from './PerformanceSection';
 export { InteractiveToolsSection } from './InteractiveToolsSection';
 export { GamificationSection } from './GamificationSection';
 export { BeautyOfRedCapSection } from './BeautyOfRedCapSection';
-
-// Re-export default exports for compatibility
-export { default } from './HeroSection';
+export { SidelinkSection } from './SidelinkSection';

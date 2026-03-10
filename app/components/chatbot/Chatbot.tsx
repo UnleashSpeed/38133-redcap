@@ -262,7 +262,7 @@ Try asking about any of these topics, or use the quick prompts below!`,
   };
 };
 
-export default function Chatbot() {
+export function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
     {
@@ -542,3 +542,5 @@ export default function Chatbot() {
     </>
   );
 }
+
+export default Chatbot;

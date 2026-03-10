@@ -14,6 +14,7 @@ import {
   ChevronRight,
   ChevronDown,
   BookOpen,
+  Share2,
 } from 'lucide-react';
 
 // Nokia Blue color
@@ -56,6 +57,19 @@ const sidebarSections: SidebarSection[] = [
       { id: 'meas-ss-rsrq', label: 'SS-RSRQ Measurement', specRef: '§9.1A.3' },
       { id: 'meas-ss-sinr', label: 'SS-SINR Measurement', specRef: '§9.1A.4' },
       { id: 'meas-csi', label: 'CSI-RS Measurements', specRef: '§9.1A.5' },
+    ],
+  },
+  {
+    id: 'sidelink',
+    label: 'Sidelink',
+    specRef: '38.133 §10.1A',
+    icon: Share2,
+    subsections: [
+      { id: 'sidelink-overview', label: 'Sidelink Overview', specRef: '§10.1A.1' },
+      { id: 'sidelink-topology', label: 'PC5 Topology', specRef: '§10.1A.2' },
+      { id: 'sidelink-resources', label: 'Resource Pools', specRef: '§10.1A.3' },
+      { id: 'sidelink-discovery', label: 'Discovery', specRef: '§10.1A.4' },
+      { id: 'sidelink-measurements', label: 'SL Measurements', specRef: '§10.1A.5' },
     ],
   },
   {
@@ -128,7 +142,17 @@ export function Sidebar({ isOpen = true, onClose }: SidebarProps) {
   };
 
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
+    // Map subsection IDs to main section IDs
+    const sectionMap: Record<string, string> = {
+      'sidelink-overview': 'sidelink',
+      'sidelink-topology': 'sidelink',
+      'sidelink-resources': 'sidelink',
+      'sidelink-discovery': 'sidelink',
+      'sidelink-measurements': 'sidelink',
+    };
+    
+    const targetId = sectionMap[sectionId] || sectionId;
+    const element = document.getElementById(targetId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
       setActiveSection(sectionId);
